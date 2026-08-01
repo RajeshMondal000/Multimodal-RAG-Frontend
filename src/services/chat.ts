@@ -1,4 +1,4 @@
-import api from "../lib/api.ts";
+import api from "../libb/api.ts";
 
 export interface ChatRequest {
     documentId: string;

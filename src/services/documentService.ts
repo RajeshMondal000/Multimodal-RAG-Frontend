@@ -1,6 +1,6 @@
-import axios from "axios";
 import type { Document } from "../types/document";
-import api from "../lib/api";
+import api from "../libb/api";
+import type { AxiosProgressEvent } from "axios";
 
 export interface UploadResponse {
     success: boolean;
@@ -35,7 +35,7 @@ export async function getDocuments(): Promise<Document[]> {
     const response =
         await api.get<GetDocumentsResponse>("/documents");
 
-    return response.data.documents.map((doc) => {
+    return response.data.documents.map((doc: DocumentResponse) => {
 
         const extension =
             doc.fileName.split(".").pop()?.toLowerCase() ?? "";
@@ -95,7 +95,7 @@ export async function uploadDocuments(
                     "Content-Type": "multipart/form-data",
                 },
 
-                onUploadProgress(progressEvent) {
+                onUploadProgress(progressEvent :AxiosProgressEvent) {
 
                     if (!progressEvent.total) return;
 

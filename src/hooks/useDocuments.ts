@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import type { Document } from "../types/document";
 import {
     getDocuments,
-    type DocumentResponse,
 } from "../services/documentService";
 
 export function useDocuments() {
