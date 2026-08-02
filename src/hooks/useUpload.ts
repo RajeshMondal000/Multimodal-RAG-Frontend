@@ -3,7 +3,7 @@ import {
     getJobProgress,
     uploadDocuments,
 } from "../services/documentService";
-import axios from "axios";
+import { getErrorMessage } from "../utils/apiError";
 
 export function useUpload() {
     const [uploadProgress, setUploadProgress] = useState(0);
@@ -68,26 +68,14 @@ export function useUpload() {
             return result;
         } catch (err) {
 
-            if (
-                axios.isAxiosError(err) &&
-                err.response?.status === 429
-            ) {
-
-                setError(
-                    err.response.data.error.message
-                );
-
-                throw err;
-
-            }
-
             setError(
-                err instanceof Error
-                    ? err.message
-                    : "Upload failed"
+                getErrorMessage(err, "Upload failed")
             );
 
             throw err;
+
+        } finally {
+            setUploading(false);
 
         }
     }

@@ -7,6 +7,7 @@ import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
 
 import { sendMessage } from "../../services/chat";
+import { getErrorMessage } from "../../utils/apiError";
 
 export default function ChatWindow() {
     const { currentChat, messages, addMessage, updateTitle, } = useChat();
@@ -59,9 +60,14 @@ export default function ChatWindow() {
         } catch (error) {
             console.error(error);
 
+            const message = getErrorMessage(
+                error,
+                "Something went wrong while generating the response."
+            );
+
             addMessage(chatId, {
                 role: "assistant",
-                content: "Something went wrong while generating the response.",
+                content: message,
             });
         } finally {
             setLoading(false);

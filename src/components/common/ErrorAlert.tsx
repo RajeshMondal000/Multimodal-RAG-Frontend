@@ -11,6 +11,7 @@ export default function ErrorAlert({
     return (
 
         <div
+            role="alert"
             className="
                 rounded-xl
                 border

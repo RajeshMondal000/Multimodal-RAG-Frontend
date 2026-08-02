@@ -96,19 +96,12 @@ export default function UploadDialog({
                 )}
 
                 {error && (
-                    <p className="mt-3 text-sm text-red-500">
-                        {error && (
-
-                            <ErrorAlert
-
-                                title="Upload Failed"
-
-                                message={error}
-
-                            />
-
-                        )}
-                    </p>
+                    <div className="mt-3">
+                        <ErrorAlert
+                            title="Upload Failed"
+                            message={error}
+                        />
+                    </div>
                 )}
 
                 <div className="mt-8 flex justify-end gap-3">
