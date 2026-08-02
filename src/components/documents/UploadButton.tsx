@@ -28,7 +28,7 @@ export default function UploadButton({
         >
             <Upload size={18} />
 
-            Upload Documents
+            Upload Files
         </button>
     );
 }

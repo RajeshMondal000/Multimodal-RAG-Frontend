@@ -45,7 +45,7 @@ export default function UploadDialog({
             >
                 <div className="mb-6 flex items-center justify-between">
                     <h2 className="text-2xl font-semibold">
-                        Upload Documents
+                        Upload Files
                     </h2>
 
                     <button

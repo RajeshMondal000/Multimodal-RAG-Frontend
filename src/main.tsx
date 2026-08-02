@@ -4,6 +4,7 @@ import App from './App.tsx'
 import { DocumentProvider } from './contexts/DocumentContext'
 import React from 'react'
 import { ChatProvider } from './contexts/ChatContext'
+import { SettingsProvider } from './contexts/SettingsContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -11,8 +12,12 @@ createRoot(document.getElementById('root')!).render(
         <DocumentProvider>
 
             <ChatProvider>
+                
+                <SettingsProvider>
 
-                <App />
+                    <App />
+
+                </SettingsProvider>
 
             </ChatProvider>
 

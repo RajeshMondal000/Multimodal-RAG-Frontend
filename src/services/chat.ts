@@ -3,6 +3,7 @@ import api from "../libb/api.ts";
 export interface ChatRequest {
     documentId: string;
     question: string;
+    useGeneralKnowledge: boolean;
 }
 
 export interface ChatSource {
@@ -20,14 +21,18 @@ export interface ChatResponse {
 }
 
 export async function sendMessage(
-    request: ChatRequest
+    question: string,
+    documentId: string,
+    useGeneralKnowledge: boolean
 ): Promise<ChatResponse> {
-
     const response = await api.post<ChatResponse>(
         "/chat",
-        request
+        {
+            question,
+            documentId,
+            useGeneralKnowledge,
+        }
     );
 
     return response.data;
-
 }

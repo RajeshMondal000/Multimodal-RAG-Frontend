@@ -9,16 +9,27 @@ import ChatInput from "./ChatInput";
 import { sendMessage } from "../../services/chat";
 import { getErrorMessage } from "../../utils/apiError";
 
+import {
+    useSettings,
+} from "../../contexts/SettingsContext";
+
 export default function ChatWindow() {
     const { currentChat, messages, addMessage, updateTitle, } = useChat();
     const { selectedDocument } = useDocuments();
+    const { useGeneralKnowledge } = useSettings();
 
     const [loading, setLoading] = useState(false);
 
     if (!selectedDocument) {
         return (
-            <div className="flex flex-1 items-center justify-center text-slate-400">
-                Select a document from the sidebar to start chatting.
+            <div className="flex flex-1 flex-col items-center justify-center gap-2 text-center text-slate-200">
+            <p>
+                Upload or Select a file from the sidebar to start chatting.
+                <br />
+                <span className="text-sm text-slate-400">
+                    PDF, TXT, DOCX, PNG, JPG, WEBP, MD, HTML, XLSX, CSV files are supported.
+                </span>
+            </p>
             </div>
         );
     }
@@ -47,10 +58,11 @@ export default function ChatWindow() {
         });
 
         try {
-            const response = await sendMessage({
-                documentId: selectedDocument.id,
+            const response = await sendMessage(
                 question,
-            });
+                selectedDocument.id,
+                useGeneralKnowledge
+            );
 
             // Add assistant response to the originating chat
             addMessage(chatId, {
@@ -84,7 +96,7 @@ export default function ChatWindow() {
                 </h2>
 
                 <p className="mt-1 text-sm text-slate-400">
-                    Ask questions about this document.
+                    Ask questions about this file.
                 </p>
             </div>
 
@@ -92,10 +104,10 @@ export default function ChatWindow() {
             <div className="flex-1 overflow-y-auto p-8">
                 {messages.length === 0 ? (
                     <div className="flex h-full items-center justify-center text-slate-500">
-                        Start by asking a question about this document.
+                        Start by asking a question about this file.
                     </div>
                 ) : (
-                    <ChatMessages messages={messages} isLoading={loading}/>
+                    <ChatMessages messages={messages} isLoading={loading} />
                 )}
             </div>
 

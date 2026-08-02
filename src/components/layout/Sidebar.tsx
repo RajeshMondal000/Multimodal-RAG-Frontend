@@ -25,7 +25,7 @@ export default function Sidebar() {
                 {/* Top Section / Header */}
                 <div className="border-b border-slate-800 p-5">
                     <h2 className="mb-4 text-lg font-semibold">
-                        Documents
+                        Files
                     </h2>
 
                     <UploadButton

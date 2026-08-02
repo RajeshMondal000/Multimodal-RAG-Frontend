@@ -31,7 +31,7 @@ export default function DocumentList() {
 
             <p className="text-sm text-slate-400">
 
-                No documents uploaded.
+                No files uploaded.
 
             </p>
 
