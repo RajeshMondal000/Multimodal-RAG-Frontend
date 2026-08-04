@@ -18,7 +18,7 @@ export default function ChatHistory() {
 
     if (documentChats.length === 0) {
         return (
-            <p className="px-2 text-sm text-slate-400">
+            <p className="px-2 text-sm text-neutral-400">
                 No chats yet
             </p>
         );
@@ -27,7 +27,7 @@ export default function ChatHistory() {
     return (
         <div>
             {/* Heading showing document-specific chat count */}
-            <h3 className="mb-3 text-sm font-semibold text-slate-400">
+            <h3 className="mb-3 text-sm font-semibold text-neutral-400">
                 File Specific Chats ({documentChats.length})
             </h3>
 

@@ -50,8 +50,8 @@ export default function DocumentCard({
                 transition
 
                 ${document.selected
-                    ? "border-blue-500 bg-slate-800"
-                    : "border-slate-700 hover:bg-slate-800"
+                    ? "border-neutral-700 bg-neutral-800 text-white"
+                    : "border-neutral-800/80 bg-neutral-900/50 hover:bg-neutral-800/60 text-neutral-300"
                 }
             `}
         >

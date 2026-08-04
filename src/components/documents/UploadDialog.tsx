@@ -16,7 +16,7 @@ export default function UploadDialog({
 }: UploadDialogProps) {
     const [files, setFiles] = useState<File[]>([]);
     const { upload, uploading, progress, error, status } = useUpload();
-    const { refresh, selectDocument } = useDocuments();
+    const { addDocument, refresh, selectDocument } = useDocuments();
 
     if (!open) return null;
 
@@ -35,12 +35,7 @@ export default function UploadDialog({
         >
             <div
                 className="
-                    w-full
-                    max-w-2xl
-                    rounded-2xl
-                    bg-slate-900
-                    p-8
-                    shadow-xl
+                    w-full max-w-2xl rounded-2xl border border-neutral-800 bg-[#1e1e1e] p-8 shadow-2xl text-neutral-200
                 "
             >
                 <div className="mb-6 flex items-center justify-between">
@@ -72,11 +67,7 @@ export default function UploadDialog({
                             <div
                                 key={file.name}
                                 className="
-                                    rounded-lg
-                                    border
-                                    border-slate-700
-                                    bg-slate-800
-                                    p-3
+                                    rounded-lg border border-neutral-700/60 bg-neutral-800/50 p-3
                                 "
                             >
                                 <div className="flex justify-between">
@@ -108,12 +99,7 @@ export default function UploadDialog({
                     <button
                         onClick={onClose}
                         className="
-                            rounded-lg
-                            border
-                            border-slate-700
-                            px-5
-                            py-2
-                            hover:bg-slate-800
+                            rounded-full border border-neutral-700 px-5 py-2 text-neutral-300 hover:bg-neutral-800 hover:text-white
                         "
                     >
                         Cancel
@@ -124,24 +110,35 @@ export default function UploadDialog({
                         onClick={async () => {
                             try {
                                 const result = await upload(files);
-                                await refresh();
-                                if (result[0]?.documentId) {
-                                    selectDocument(result[0].documentId);
+                                const uploaded = result[0];
+
+                                if (!uploaded?.documentId) {
+                                    throw new Error("Upload did not return a document ID.");
                                 }
+
+                                addDocument({
+                                    id: uploaded.documentId,
+                                    name: uploaded.fileName,
+                                    uploadedAt: uploaded.uploadedAt,
+                                    status: "ready",
+                                    type: uploaded.fileName.split(".").pop() ?? "document",
+                                    selected: false,
+                                });
+
+                                selectDocument(uploaded.documentId);
+
                                 setFiles([]);
                                 onClose();
+
+                                window.setTimeout(() => {
+                                    void refresh();
+                                }, 3000);
                             } catch {
                                 // Error handled by useUpload state
                             }
                         }}
                         className="
-                            rounded-lg
-                            bg-blue-600
-                            px-5
-                            py-2
-                            disabled:cursor-not-allowed
-                            disabled:opacity-50
-                            hover:bg-blue-500
+                            rounded-full bg-white px-6 py-2 font-medium text-neutral-950 transition-colors hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-40
                         "
                     >
                         {uploading ? "Uploading..." : "Upload"}

@@ -22,11 +22,11 @@ export default function ChatWindow() {
 
     if (!selectedDocument) {
         return (
-            <div className="flex flex-1 flex-col items-center justify-center gap-2 text-center text-slate-200">
+            <div className="flex flex-1 flex-col items-center justify-center gap-2 text-center text-neutral-200">
             <p>
                 Upload or Select a file from the sidebar to start chatting.
                 <br />
-                <span className="text-sm text-slate-400">
+                <span className="text-sm text-neutral-400">
                     PDF, TXT, DOCX, PNG, JPG, WEBP, MD, HTML, XLSX, CSV files are supported.
                 </span>
             </p>

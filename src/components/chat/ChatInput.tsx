@@ -43,12 +43,16 @@ export default function ChatInput({
                 disabled={disabled}
                 className="
                     flex-1
-                    rounded-xl
-                    border
-                    border-slate-700
-                    bg-slate-900
-                    px-4
-                    py-3
+            rounded-full
+            border
+            border-neutral-800
+            bg-neutral-900
+            px-5
+            py-3
+            text-neutral-100
+            placeholder-neutral-500
+            focus:border-neutral-700
+            focus:outline-none
                 "
                 onKeyDown={(e) => {
                     if (e.key === "Enter") {
@@ -61,11 +65,16 @@ export default function ChatInput({
                 onClick={handleSend}
                 disabled={disabled}
                 className="
-                    rounded-xl
-                    bg-blue-600
-                    px-5
-                    py-3
-                    disabled:opacity-50
+                    rounded-full
+            bg-white
+            px-6
+            py-3
+            font-medium
+            text-neutral-950
+            transition-colors
+            hover:bg-neutral-200
+            disabled:cursor-not-allowed
+            disabled:opacity-40
                 "
             >
                 Send

@@ -15,7 +15,7 @@ export default function DocumentList() {
 
         return (
 
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-neutral-400">
 
                 Loading documents...
 

@@ -28,8 +28,8 @@ export default function ChatMessage({
                     py-3
                     ${
                         isUser
-                            ? "bg-blue-600 text-white"
-                            : "bg-slate-800 text-white"
+                            ? "bg-neutral-800 text-neutral-100"
+                            : "bg-transparent text-neutral-200"
                     }
                 `}
             >

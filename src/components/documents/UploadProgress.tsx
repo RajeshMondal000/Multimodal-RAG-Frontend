@@ -23,10 +23,10 @@ export default function UploadProgress({
 
             </div>
 
-            <div className="h-2 overflow-hidden rounded-full bg-slate-700">
+            <div className="h-2 overflow-hidden rounded-full bg-neutral-800">
 
                 <div
-                    className="h-full rounded-full bg-blue-500 transition-all duration-200"
+                    className="h-full rounded-full bg-neutral-200 transition-all duration-200"
                     style={{
                         width: `${progress}%`,
                     }}

@@ -35,8 +35,8 @@ export default function UploadZone({
 
                 ${
                     isDragActive
-                        ? "border-blue-500 bg-blue-500/10"
-                        : "border-slate-700 hover:border-blue-500"
+                        ? "border-neutral-400 bg-neutral-800/50"
+                        : "border-neutral-700 hover:border-neutral-500 bg-neutral-900/40"
                 }
             `}
         >
@@ -44,18 +44,18 @@ export default function UploadZone({
 
             <UploadCloud
                 size={52}
-                className="mb-5 text-blue-500"
+                className="mb-5 text-neutral-300"
             />
 
-            <h3 className="text-xl font-semibold">
+            <h3 className="text-xl font-semibold text-neutral-200">
                 Drop files here
             </h3>
 
-            <p className="mt-2 text-slate-400">
+            <p className="mt-2 text-neutral-400">
                 or click to browse
             </p>
 
-            <p className="mt-6 text-center text-sm text-slate-500">
+            <p className="mt-6 text-center text-sm text-neutral-500">
                 PDF • DOCX • XLSX • CSV • TXT • MD • HTML • PNG • JPG
             </p>
         </div>

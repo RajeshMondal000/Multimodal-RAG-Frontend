@@ -21,6 +21,8 @@ interface DocumentContextType {
 
     selectDocument: (id: string) => void;
 
+    addDocument: (document: Document) => void;
+
     removeDocument: (id: string) => Promise<void>;
 
     refresh: () => Promise<void>;
@@ -77,18 +79,32 @@ export function DocumentProvider({ children }: Props) {
 
     }
 
+    function addDocument(document: Document) {
+
+        setDocuments(previous => [
+
+            document,
+
+            ...previous,
+
+        ]);
+
+    }
+
     function selectDocument(id: string) {
 
-        const updated = documents.map(doc => ({
-            ...doc,
-            selected: doc.id === id,
-        }));
+        setDocuments(previous => {
+            const updated = previous.map(doc => ({
+                ...doc,
+                selected: doc.id === id,
+            }));
 
-        setDocuments(updated);
+            setSelectedDocument(
+                updated.find(doc => doc.id === id) ?? null
+            );
 
-        setSelectedDocument(
-            updated.find(doc => doc.id === id) ?? null
-        );
+            return updated;
+        });
 
     }
 
@@ -122,6 +138,7 @@ export function DocumentProvider({ children }: Props) {
                 selectedDocument,
                 selectDocument,
                 removeDocument,
+                addDocument,
             }}
         >
             {children}
