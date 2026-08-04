@@ -7,7 +7,7 @@ export default function Header() {
     } = useSettings();
 
     return (
-        <header className="flex h-16 items-center justify-between border-b border-slate-800 bg-slate-900 px-6">
+        <header className="flex h-16 items-center justify-between border-b border-neutral-800/50 bg-neutral-900 px-6">
             <div>
                 <h1 className="text-lg font-semibold">
                     MultiModal RAG Assistant
@@ -25,7 +25,7 @@ export default function Header() {
                 <button
                     onClick={() => setUseGeneralKnowledge(!useGeneralKnowledge)}
                     className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${
-                        useGeneralKnowledge ? "bg-blue-600" : "bg-slate-700"
+                        useGeneralKnowledge ? "bg-blue-500" : "bg-neutral-700"
                     }`}
                     role="switch"
                     aria-checked={useGeneralKnowledge}

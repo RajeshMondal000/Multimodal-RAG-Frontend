@@ -20,10 +20,10 @@ export default function Sidebar() {
 
     return (
         <>
-            <aside className="flex h-screen w-80 flex-col border-r border-slate-800 bg-slate-900">
+            <aside className="flex h-screen w-80 flex-col border-r border-neutral-800/40 bg-neutral-900 text-neutral-300">
 
                 {/* Top Section / Header */}
-                <div className="border-b border-slate-800 p-5">
+                <div className="border-b border-neutral-800 p-5">
                     <h2 className="mb-4 text-lg font-semibold">
                         Files
                     </h2>
@@ -42,23 +42,12 @@ export default function Sidebar() {
                     </div>
 
                     {/* Chat History Section Wrapper */}
-                    <div className="mt-6 flex flex-1 flex-col overflow-hidden border-t border-slate-800 pt-6">
+                    <div className="mt-6 flex flex-1 flex-col overflow-hidden border-t border-neutral-800 pt-6">
 
                         <button
                             onClick={handleNewChat}
                             disabled={!selectedDocument}
-                            className="
-                                mb-4
-                                w-full
-                                rounded-lg
-                                border
-                                border-slate-700
-                                py-2
-                                transition
-                                hover:bg-slate-800
-                                disabled:cursor-not-allowed
-                                disabled:opacity-50
-                            "
+                            className="mb-4 w-full rounded-full bg-neutral-800 border border-neutral-700/50 py-2.5 px-4 text-sm font-medium text-white hover:bg-neutral-700 hover:text-white disabled:cursor-not-allowed disabled:opacity-80"
                         >
                             + New Chat
                         </button>

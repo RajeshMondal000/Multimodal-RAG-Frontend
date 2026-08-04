@@ -16,7 +16,7 @@ export default function UploadDialog({
 }: UploadDialogProps) {
     const [files, setFiles] = useState<File[]>([]);
     const { upload, uploading, progress, error, status } = useUpload();
-    const { refresh } = useDocuments();
+    const { refresh, selectDocument } = useDocuments();
 
     if (!open) return null;
 
@@ -123,8 +123,11 @@ export default function UploadDialog({
                         disabled={files.length === 0 || uploading}
                         onClick={async () => {
                             try {
-                                await upload(files);
+                                const result = await upload(files);
                                 await refresh();
+                                if (result[0]?.documentId) {
+                                    selectDocument(result[0].documentId);
+                                }
                                 setFiles([]);
                                 onClose();
                             } catch {
